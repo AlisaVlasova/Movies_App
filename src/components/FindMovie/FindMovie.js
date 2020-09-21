@@ -8,7 +8,6 @@ import { actions, selectors } from '../../redux/store';
 import { History } from '../History/History';
 
 export const FindMovie = ({ loadMovies }) => {
-  const [isMovieExists, setMovieExistance] = useState(true);
   const [isHistoryVisible, setIsHistoryVisible] = useState(false);
 
   const dispatch = useDispatch();
@@ -20,7 +19,6 @@ export const FindMovie = ({ loadMovies }) => {
 
   const handleChanges = (event) => {
     dispatch(actions.setQuery(event.target.value));
-    setMovieExistance(true);
   };
 
   const handleSubmit = (event) => {
@@ -45,7 +43,7 @@ export const FindMovie = ({ loadMovies }) => {
               type="text"
               id="movie-title"
               placeholder="Enter a title to search"
-              className={isMovieExists ? 'input' : 'input is-danger'}
+              className="input"
               value={query}
               onChange={handleChanges}
             />
@@ -61,12 +59,6 @@ export const FindMovie = ({ loadMovies }) => {
           </button>
           {isHistoryVisible
           && <History />}
-
-          {!isMovieExists && (
-            <p className="help is-danger">
-              Can&apos;t find a movie with such a title
-            </p>
-          )}
         </div>
 
         <div className="field is-grouped">
